@@ -23,4 +23,36 @@ class BlogController extends AbstractController
             'owner' => 'Casey',
         ]);
     }
+
+    /**
+     * @Route("/blog/list/{page}", requirements={"page"="\d+"}, defaults={"page"=1}, name="blog_list")
+     */
+
+    public function list($page)
+    {
+        return $this->render('blog/list.html.twig', [
+            'page' => $page,
+        ]);
+    }
+
+    /**
+     * @Route("/blog/show/{slug}", requirements={"slug"="[a-zA-Z0-9-]+"}, defaults={"slug"="article-sans-titre"}, name="blog_show")
+     */
+
+    public function show($slug)
+    {
+
+        if (preg_match ( '/[A-Z]/', $slug) or preg_match ("_", $slug)) {
+
+            throw $this->createNotFoundException('The page does not exist');
+
+            // the above is just a shortcut for:
+            // throw new NotFoundHttpException('The product does not exist');
+        }
+
+
+        return $this->render('blog/show.html.twig', [
+            'slug' => $slug,
+        ]);
+    }
 }

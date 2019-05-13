@@ -40,6 +40,10 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|(*:159)'
                         .')'
                     .')'
+                    .'|/blog/(?'
+                        .'|list(?:/(\\d+))?(*:193)'
+                        .'|show(?:/([a-zA-Z0-9-]+))?(*:226)'
+                    .')'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -50,6 +54,8 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
             149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            193 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
+            226 => [[['_route' => 'blog_show', 'slug' => 'article-sans-titre', '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
         ];
     }
 }

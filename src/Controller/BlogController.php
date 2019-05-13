@@ -36,13 +36,13 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/show/{slug}", requirements={"slug"="[a-zA-Z0-9-]+"}, defaults={"slug"="article-sans-titre"}, name="blog_show")
+     * @Route("/blog/show/{slug}", requirements={"slug"="[a-zA-Z0-9-_]+"}, defaults={"slug"="article-sans-titre"}, name="blog_show")
      */
 
     public function show($slug)
     {
 
-        if (preg_match ( '/[A-Z]/', $slug) or preg_match ("_", $slug)) {
+        if (preg_match ( '/[A-Z]/', $slug) or preg_match ( '/_/', $slug)) {
 
             throw $this->createNotFoundException('The page does not exist');
 

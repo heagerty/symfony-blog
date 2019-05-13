@@ -15,7 +15,7 @@
                 ],
                 'requirements' => [
                     [
-                        'slug' => '[a-zA-Z0-9-]+',
+                        'slug' => '[a-zA-Z0-9-_]+',
                     ],
                 ],
                 'defaults' => [

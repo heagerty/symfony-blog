@@ -76,3 +76,15 @@ f66ad4,127.0.0.1,GET,http://localhost:8000/blog/show/mon_article,1557748287,474d
 474da4,127.0.0.1,GET,http://localhost:8000/blog/show/mon_article,1557748287,,404
 bc3460,127.0.0.1,GET,http://localhost:8000/blog/show/mon_article,1557748347,0e9e85,200
 0e9e85,127.0.0.1,GET,http://localhost:8000/blog/show/mon_article,1557748347,,404
+a48027,127.0.0.1,GET,http://127.0.0.1:8001/,1557754087,,200
+12d651,127.0.0.1,GET,http://127.0.0.1:8001/favicon.ico,1557754087,0c36c7,200
+0c36c7,127.0.0.1,GET,http://127.0.0.1:8001/favicon.ico,1557754087,,404
+586493,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/article-du-1-janvier-1970,1557754116,,200
+420e9d,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/,1557754138,,301
+f0b3dd,127.0.0.1,GET,http://127.0.0.1:8001/blog/show,1557754138,,200
+8825a6,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/Dsdgj,1557754144,4e7f8d,200
+4e7f8d,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/Dsdgj,1557754144,,404
+3f6b85,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/article-du-1-janvier-1970,1557754155,,200
+18967c,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/Article-du-1-janvier-1970,1557754174,25bee9,200
+25bee9,127.0.0.1,GET,http://127.0.0.1:8001/blog/show/Article-du-1-janvier-1970,1557754174,,404
+d99627,127.0.0.1,GET,http://127.0.0.1:8001/blog/show,1557754180,,200

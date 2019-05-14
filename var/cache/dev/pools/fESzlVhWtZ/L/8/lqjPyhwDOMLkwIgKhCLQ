@@ -8,10 +8,10 @@
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    '/blog',
+                    '/',
                 ],
                 'name' => [
-                    'blog_index',
+                    'index',
                 ],
             ],
         ],

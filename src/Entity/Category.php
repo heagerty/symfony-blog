@@ -37,4 +37,11 @@ class Category
 
         return $this;
     }
+
+    public function findOneByName(string $categoryName): self
+    {
+        $this->name = $categoryName;
+
+        return $this;
+    }
 }

@@ -8,7 +8,7 @@
 {% block body %}
     {% for article in articles %}
     <div>
-        <h1>Article title: {{ article.title }}</h1>
+        <h1>{{ article.id }} Article title: {{ article.title }}</h1>
         <h2>Category: {{ article.category.name }}</h2>
         <p>{{ article.content }}</p>
     </div>

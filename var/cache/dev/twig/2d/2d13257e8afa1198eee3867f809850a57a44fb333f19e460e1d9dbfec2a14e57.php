@@ -105,8 +105,10 @@ class __TwigTemplate_d627d1130e329e6ded2d3f6cdb2821310084aa05e1841d925a63beab5bd
         foreach ($context['_seq'] as $context["_key"] => $context["article"]) {
             // line 10
             echo "    <div>
-        <h1>Article title: ";
+        <h1>";
             // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "id", [], "any", false, false, false, 11), "html", null, true);
+            echo " Article title: ";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["article"], "title", [], "any", false, false, false, 11), "html", null, true);
             echo "</h1>
         <h2>Category: ";
@@ -153,7 +155,7 @@ class __TwigTemplate_d627d1130e329e6ded2d3f6cdb2821310084aa05e1841d925a63beab5bd
 
     public function getDebugInfo()
     {
-        return array (  130 => 17,  127 => 16,  118 => 13,  114 => 12,  110 => 11,  107 => 10,  102 => 9,  93 => 8,  76 => 6,  58 => 4,  36 => 2,);
+        return array (  132 => 17,  129 => 16,  120 => 13,  116 => 12,  110 => 11,  107 => 10,  102 => 9,  93 => 8,  76 => 6,  58 => 4,  36 => 2,);
     }
 
     public function getSourceContext()
@@ -168,7 +170,7 @@ class __TwigTemplate_d627d1130e329e6ded2d3f6cdb2821310084aa05e1841d925a63beab5bd
 {% block body %}
     {% for article in articles %}
     <div>
-        <h1>Article title: {{ article.title }}</h1>
+        <h1>{{ article.id }} Article title: {{ article.title }}</h1>
         <h2>Category: {{ article.category.name }}</h2>
         <p>{{ article.content }}</p>
     </div>

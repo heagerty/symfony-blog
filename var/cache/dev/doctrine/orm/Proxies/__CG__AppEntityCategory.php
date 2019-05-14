@@ -64,10 +64,10 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles'];
     }
 
     /**
@@ -219,6 +219,39 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'findOneByName', [$categoryName]);
 
         return parent::findOneByName($categoryName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArticles(): \Doctrine\ORM\PersistentCollection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArticles', []);
+
+        return parent::getArticles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addArticle(\App\Entity\Article $article): \App\Entity\Category
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArticle', [$article]);
+
+        return parent::addArticle($article);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeArticle(\App\Entity\Article $article): \App\Entity\Category
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArticle', [$article]);
+
+        return parent::removeArticle($article);
     }
 
 }

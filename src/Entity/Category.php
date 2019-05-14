@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
@@ -41,6 +43,56 @@ class Category
     public function findOneByName(string $categoryName): self
     {
         $this->name = $categoryName;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
+     */
+    private $articles;
+
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): PersistentCollection
+    {
+        return $this->articles;
+    }
+
+    /**
+     * param Article $article
+     * @return Category
+     */
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Article $article
+     * @return Category
+     */
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getCategory() === $this) {
+                $article->setCategory(null);
+            }
+        }
 
         return $this;
     }

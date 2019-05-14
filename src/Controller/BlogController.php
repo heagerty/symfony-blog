@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use App\Repository\CategoryRepository;
 
@@ -101,7 +102,7 @@ class BlogController extends AbstractController
     /**
      * Show a selection based on category name
      *
-     * @param string $categoryName Category Name
+     * @param string $category Category
      *
      * @Route("blog/category/{category}", name="show_category")
      *
@@ -109,13 +110,22 @@ class BlogController extends AbstractController
      */
     public function showByCategory(string $category) : Response
     {
-        $category = $this->getDoctrine()
+/*        $category = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(['name' => mb_strtolower($category)]);
 
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
-            ->findBy(['category' => ($category)], array('id' => 'DESC'), 3);
+            ->findBy(['category' => ($category)], array('id' => 'DESC'), 3);    */
+
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(['name' => mb_strtolower($category)]);
+
+
+        $articles = $category->getArticles();
+
+
 
 
         return $this->render('blog/category.html.twig', [

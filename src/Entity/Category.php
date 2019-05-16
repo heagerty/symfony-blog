@@ -52,10 +52,13 @@ class Category
      */
     private $articles;
 
+    private $categories;
+
+
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -67,14 +70,14 @@ class Category
     }
 
     /**
-     * param Article $article
+     * param Category $category
      * @return Category
      */
-    public function addArticle(Article $article): self
+    public function addCategory(Category $category): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setCategory($this);
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCategory($this);
         }
 
         return $this;
@@ -96,4 +99,9 @@ class Category
 
         return $this;
     }
+
+
+
+
+
 }

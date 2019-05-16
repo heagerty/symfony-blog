@@ -20,7 +20,11 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
             '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
             '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
-            '/' => [[['_route' => 'index', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null]],
+            '/' => [
+                [['_route' => 'index', '_controller' => 'App\\Controller\\BlogController::index'], null, null, null, false, false, null],
+                [['_route' => 'app_index', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null],
+            ],
+            '/category' => [[['_route' => 'category_index', '_controller' => 'App\\Controller\\CategoryController::index'], null, null, null, true, false, null]],
         ];
         $this->regexpList = [
             0 => '{^(?'
@@ -39,10 +43,11 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|(*:159)'
                         .')'
                     .')'
-                    .'|/blog/list(?:/(\\d+))?(*:190)'
-                    .'|/([a-z0-9-]+)?(*:212)'
-                    .'|/blog/category/([^/]++)(*:243)'
-                    .'|/(*:252)'
+                    .'|/blog(?'
+                        .'|/list(?:/(\\d+))?(*:193)'
+                        .'|(?:/([a-z0-9-]+))?(*:219)'
+                        .'|/category/([^/]++)(*:245)'
+                    .')'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -53,10 +58,9 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
             149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-            190 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
-            212 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
-            243 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
-            252 => [[['_route' => 'app_index', '_controller' => 'App\\Controller\\DefaultController::index'], [], null, null, false, false, null]],
+            193 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
+            219 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
+            245 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
         ];
     }
 }

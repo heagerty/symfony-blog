@@ -13,6 +13,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Form\ArticleSearchType;
+use App\Form\CategoryType;
+use Symfony\Component\HttpFoundation\Request;
 
 
 use App\Repository\CategoryRepository;
@@ -42,9 +45,25 @@ class BlogController extends AbstractController
             );
         }
 
+
+        //create search field
+//        $form = $this->createForm(
+//            ArticleSearchType::class,
+//            null,
+//            ['method' => Request::METHOD_GET]
+//        );
+
+
+        $category = new Category();
+        $form = $this->createForm(CategoryTypeOld::class, $category);
+
+
+
         return $this->render(
             'blog/index.html.twig',
-            ['articles' => $articles]
+            ['articles' => $articles,
+            'form' => $form->createView(),
+            ]
         );
     }
 
@@ -64,7 +83,7 @@ class BlogController extends AbstractController
      *
      * @param string $slug The slugger
      *
-     * @Route("/{slug<^[a-z0-9-]+$>}",
+     * @Route("/blog/{slug<^[a-z0-9-]+$>}",
      *     defaults={"slug" = null},
      *     name="blog_show")
      *  @return Response A response instance

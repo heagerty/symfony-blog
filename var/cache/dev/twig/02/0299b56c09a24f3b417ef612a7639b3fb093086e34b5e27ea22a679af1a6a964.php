@@ -142,16 +142,38 @@ class __TwigTemplate_cd549b1ffd48e58c6a6d0646e3cc337d561d00e482ebda440ab5d35d3d7
         Back to homepage.
     </a>
 
+
+";
+        // line 25
+        echo "
+    ";
+        // line 26
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 26, $this->source); })()), 'form_start');
+        echo "
+    ";
+        // line 27
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 27, $this->source); })()), "name", [], "any", false, false, false, 27), 'row');
+        echo "
+    <button class=\"btn\">";
+        // line 28
+        echo twig_escape_filter($this->env, (((isset($context["button_label"]) || array_key_exists("button_label", $context))) ? (_twig_default_filter((isset($context["button_label"]) || array_key_exists("button_label", $context) ? $context["button_label"] : (function () { throw new RuntimeError('Variable "button_label" does not exist.', 28, $this->source); })()), "Save")) : ("Save")), "html", null, true);
+        echo "</button>
+    ";
+        // line 29
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 29, $this->source); })()), 'form_end');
+        echo "
+
+
     <p>Pour voir si toutes tes modifications sont bonnes, tu peux ajouter ces 2 liens dans une page indépendante (pourquoi pas ta page d'index nommée \"app_index\", afin de tester tes routes :</p>
     <a href=\"";
-        // line 21
+        // line 33
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_show", ["slug" => "javascript-vs-php"]);
         echo "\">
         Testing show() method from BlogController with a real article s slug.
     </a>
     <br>
      <a href=\"";
-        // line 25
+        // line 37
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("index");
         echo "\">
         Testing index() method from BlogController to view all articles.
@@ -177,7 +199,7 @@ class __TwigTemplate_cd549b1ffd48e58c6a6d0646e3cc337d561d00e482ebda440ab5d35d3d7
 
     public function getDebugInfo()
     {
-        return array (  155 => 25,  148 => 21,  139 => 16,  132 => 14,  116 => 11,  108 => 10,  105 => 9,  87 => 8,  84 => 7,  75 => 6,  57 => 4,  35 => 2,);
+        return array (  177 => 37,  170 => 33,  163 => 29,  159 => 28,  155 => 27,  151 => 26,  148 => 25,  139 => 16,  132 => 14,  116 => 11,  108 => 10,  105 => 9,  87 => 8,  84 => 7,  75 => 6,  57 => 4,  35 => 2,);
     }
 
     public function getSourceContext()
@@ -200,6 +222,18 @@ class __TwigTemplate_cd549b1ffd48e58c6a6d0646e3cc337d561d00e482ebda440ab5d35d3d7
     <a href=\"{{ path('app_index') }}\">
         Back to homepage.
     </a>
+
+
+{#    {{ form_start(form) }}#}
+{#    {{ form_row(form.searchField) }}#}
+{#        <button type=\"submit\" name=\"btnSearch\">Rechercher</button>#}
+{#    {{ form_end(form) }}#}
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button class=\"btn\">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
 
     <p>Pour voir si toutes tes modifications sont bonnes, tu peux ajouter ces 2 liens dans une page indépendante (pourquoi pas ta page d'index nommée \"app_index\", afin de tester tes routes :</p>
     <a href=\"{{ path('blog_show', { 'slug': \"javascript-vs-php\" }) }}\">

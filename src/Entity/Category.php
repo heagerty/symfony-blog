@@ -59,7 +59,7 @@ class Category
     }
 
     /**
-     * @return Collection|Article[]
+     * @return PersistentCollection|Article[]
      */
     public function getArticles(): PersistentCollection
     {

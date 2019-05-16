@@ -2,21 +2,31 @@
 
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+            clone ($p['Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ParamConverter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ParamConverter')),
         ],
         null,
         [
             'Symfony\\Component\\Routing\\Annotation\\Route' => [
                 'path' => [
-                    'blog/category/{category}',
+                    'blog/category/{name}',
                 ],
                 'name' => [
                     'show_category',
                 ],
             ],
+            'Sensio\\Bundle\\FrameworkExtraBundle\\Configuration\\ParamConverter' => [
+                'name' => [
+                    1 => 'category',
+                ],
+                'class' => [
+                    1 => 'App\\Entity\\Category',
+                ],
+            ],
         ],
         [
             $o[0],
+            $o[1],
         ],
         []
     );

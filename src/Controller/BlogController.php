@@ -7,11 +7,13 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
+
 
 use App\Repository\CategoryRepository;
 
@@ -102,25 +104,30 @@ class BlogController extends AbstractController
     /**
      * Show a selection based on category name
      *
-     * @param string $category Category
+     * @param Category $category Category
      *
-     * @Route("blog/category/{category}", name="show_category")
+     * @Route("blog/category/{name}", name="show_category")
      *
      * @return Response A response instance
+     *
+     * @ParamConverter("category", class="App\Entity\Category")
+     *
      */
-    public function showByCategory(string $category) : Response
+    public function showByCategory(Category $category) : Response
     {
+
+
 /*        $category = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(['name' => mb_strtolower($category)]);
 
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
-            ->findBy(['category' => ($category)], array('id' => 'DESC'), 3);    */
+            ->findBy(['category' => ($category)], array('id' => 'DESC'), 3);
 
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
-            ->findOneBy(['name' => mb_strtolower($category)]);
+            ->findOneBy(['name' => mb_strtolower($category)]);       */
 
 
         $articles = $category->getArticles();

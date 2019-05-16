@@ -55,7 +55,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
             190 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
             212 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
-            243 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['category'], null, null, false, true, null]],
+            243 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
             252 => [[['_route' => 'app_index', '_controller' => 'App\\Controller\\DefaultController::index'], [], null, null, false, false, null]],
         ];
     }

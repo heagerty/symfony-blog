@@ -36,11 +36,11 @@ class CategoryController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $articles = $this->getDoctrine()
+        $categories = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findAll();
 
-        if (!$articles) {
+        if (!$categories) {
             throw $this->createNotFoundException(
                 'No article found in article\'s table.'
             );

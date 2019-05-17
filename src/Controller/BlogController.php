@@ -55,7 +55,7 @@ class BlogController extends AbstractController
 
 
         $category = new Category();
-        $form = $this->createForm(CategoryTypeOld::class, $category);
+        $form = $this->createForm(CategoryType::class, $category);
 
 
 

@@ -64,10 +64,10 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'categories'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'articles', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'categories'];
     }
 
     /**
@@ -235,12 +235,12 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addArticle(\App\Entity\Article $article): \App\Entity\Category
+    public function addCategory(\App\Entity\Category $category): \App\Entity\Category
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArticle', [$article]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCategory', [$category]);
 
-        return parent::addArticle($article);
+        return parent::addCategory($category);
     }
 
     /**

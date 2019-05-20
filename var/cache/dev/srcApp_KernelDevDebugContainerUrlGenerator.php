@@ -43,6 +43,11 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'show_category' => [['name'], ['_controller' => 'App\\Controller\\BlogController::showByCategory'], [], [['variable', '/', '[^/]++', 'name', true], ['text', '/blog/category']], [], []],
         'category_index' => [[], ['_controller' => 'App\\Controller\\CategoryController::index'], [], [['text', '/category/']], [], []],
         'app_index' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],
+        'tag_index' => [[], ['_controller' => 'App\\Controller\\TagController::index'], [], [['text', '/tag/']], [], []],
+        'tag_new' => [[], ['_controller' => 'App\\Controller\\TagController::new'], [], [['text', '/tag/new']], [], []],
+        'tag_show' => [['name'], ['_controller' => 'App\\Controller\\TagController::show'], [], [['variable', '/', '[^/]++', 'name', true], ['text', '/tag']], [], []],
+        'tag_edit' => [['name'], ['_controller' => 'App\\Controller\\TagController::edit'], [], [['text', '/edit'], ['variable', '/', '[^/]++', 'name', true], ['text', '/tag']], [], []],
+        'tag_delete' => [['id'], ['_controller' => 'App\\Controller\\TagController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/tag']], [], []],
     ];
         }
     }

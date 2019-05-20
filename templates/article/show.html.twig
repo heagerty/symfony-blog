@@ -26,5 +26,14 @@
 
     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
 
+    <p><strong>Tags :</strong></p>
+    <ul>
+        {% for tag in article.tags %}
+            <li>{{ tag.name }} </li>
+        {% else %}
+            <li>No tags for this article</li>
+        {% endfor %}
+    </ul>
+
     {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

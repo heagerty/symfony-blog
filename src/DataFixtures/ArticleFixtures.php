@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
+use App\Service\Slugify;
 
 
 class ArticleFixtures extends Fixture implements DependentFixtureInterface
@@ -30,6 +31,11 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
 
             $category = new Category();
             $article->setCategory($category->findOneByName($faker->randomElement(CategoryFixtures::CATEGORIES)));
+
+            $slugify = new Slugify();
+            $slug = $slugify->generate($article->getTitle());
+            $article->setSlug($slug);
+
             $manager->persist($article);
             $manager->persist($category);
 

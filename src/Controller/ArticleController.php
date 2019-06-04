@@ -36,6 +36,9 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
+        $author = $this->getUser();
+        $article->setAuthor($author);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
@@ -85,9 +88,12 @@ class ArticleController extends AbstractController
         $slug = $slugify->generate($article->getTitle());
         $article->setSlug($slug);
 
+        $author = $article->getAuthor();
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'slug' => $slug,
+            'author' => $article->getAuthor()
         ]);
     }
 

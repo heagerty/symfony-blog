@@ -5,4 +5,12 @@
         <img src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
         Casey's Blog
     </a>
+    <span class="right">
+    {% if app.user %}
+        Bonjour {{ app.user.email }} ! -
+        <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}"> Se connecter</a>
+    {% endif %}
+    </span>
 </nav>

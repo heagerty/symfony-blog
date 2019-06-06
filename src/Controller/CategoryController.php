@@ -49,7 +49,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(CategoryType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             // $data contient les données du $_POST
             // Faire une recherche dans la BDD avec les infos de $data...

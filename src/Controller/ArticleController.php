@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Slugify;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/article")
@@ -86,10 +87,13 @@ class ArticleController extends AbstractController
     public function show(Article $article, Slugify $slugify): Response
     {
 
+
+
+
+
         $slug = $slugify->generate($article->getTitle());
         $article->setSlug($slug);
 
-        $author = $article->getAuthor();
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
@@ -100,6 +104,7 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
+     *
      */
     public function edit(Request $request, Article $article, Slugify $slugify): Response
     {
@@ -114,18 +119,35 @@ class ArticleController extends AbstractController
             ]);
         }
 
+
         $slug = $slugify->generate($article->getTitle());
         $article->setSlug($slug);
 
-        return $this->render('article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-            'slug' => $slug,
-        ]);
+        $user = $this->getUser();
+        $userRoles = $user->getRoles();
+        $author = $article->getAuthor();
+
+        if ($user == $author or in_array('ROLE_ADMIN', $userRoles)) {
+            return $this->render('article/edit.html.twig', [
+                'article' => $article,
+                'form' => $form->createView(),
+                'slug' => $slug,
+            ]);
+        } else {
+            $isNotAuthor = true;
+
+            return $this->render('article/show.html.twig', [
+                'article' => $article,
+                'slug' => $slug,
+                'author' => $article->getAuthor(),
+                'isNotAuthor' => $isNotAuthor
+            ]);
+        }
     }
 
     /**
      * @Route("/{id}", name="article_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Article $article): Response
     {

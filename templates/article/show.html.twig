@@ -5,6 +5,10 @@
 {% block body %}
     <h1>Article</h1>
 
+    {% if isNotAuthor is defined and isNotAuthor == true %}
+        <p class="error">You are not the author of the article...</p>
+    {%endif%}
+
     <table class="table">
         <tbody>
             <tr>
@@ -30,9 +34,12 @@
         </tbody>
     </table>
 
+    {% if is_granted('ROLE_AUTHOR') %}
+        <a href="{{ path('article_edit', { 'id': article.id} ) }}">Éditer</a>
+    {%endif%}
+
     <a href="{{ path('article_index') }}">back to list</a>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
 
     <p><strong>Tags :</strong></p>
     <ul>

@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use App\Form\ArticleSearchType;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Repository\CategoryRepository;
 
@@ -100,5 +100,27 @@ class CategoryController extends AbstractController
     }
 
 
+    /**
+     * @Route("category/new", name="category_new", methods={"GET","POST"})
+     *  @IsGranted("ROLE_ADMIN")
+     */
+    public function new(Request $request): Response
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render('category/new.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
+        ]);
+    }
 }

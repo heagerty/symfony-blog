@@ -451,6 +451,7 @@
     </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
+      <argument type="service" id="App\Service\Slugify"/>
     </service>
     <service id="App\DataFixtures\ArticleFixtures" class="App\DataFixtures\ArticleFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
@@ -582,6 +583,7 @@
         <argument key="profiler" type="service" id="profiler" on-invalid="ignore_uninitialized"/>
         <argument key="debug.validator" type="service" id="debug.validator" on-invalid="ignore_uninitialized"/>
         <argument key="debug.stopwatch" type="service" id="debug.stopwatch" on-invalid="ignore_uninitialized"/>
+        <argument key="form.type.entity" type="service" id="form.type.entity" on-invalid="ignore_uninitialized"/>
         <argument key="security.token_storage" type="service" id="security.token_storage" on-invalid="ignore_uninitialized"/>
         <argument key="swiftmailer.email_sender.listener" type="service" id="swiftmailer.email_sender.listener" on-invalid="ignore_uninitialized"/>
       </argument>
@@ -591,6 +593,7 @@
         <argument key="profiler">reset</argument>
         <argument key="debug.validator">reset</argument>
         <argument key="debug.stopwatch">reset</argument>
+        <argument key="form.type.entity">reset</argument>
         <argument key="security.token_storage">setToken</argument>
         <argument key="swiftmailer.email_sender.listener">reset</argument>
       </argument>
@@ -1233,6 +1236,11 @@
             <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/validator/Resources/translations/validators.az.xlf</argument>
             <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/form/Resources/translations/validators.az.xlf</argument>
             <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/security-core/Resources/translations/security.az.xlf</argument>
+          </argument>
+          <argument key="be" type="collection">
+            <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/validator/Resources/translations/validators.be.xlf</argument>
+            <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/form/Resources/translations/validators.be.xlf</argument>
+            <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/security-core/Resources/translations/security.be.xlf</argument>
           </argument>
           <argument key="bg" type="collection">
             <argument>/home/casey/Documents/quetes/Symfony/blog/vendor/symfony/validator/Resources/translations/validators.bg.xlf</argument>
@@ -2061,6 +2069,14 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
+        <argument>console.command</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument type="service" id="router_listener"/>
@@ -2360,7 +2376,7 @@
     <service id="router.default" class="Symfony\Bundle\FrameworkBundle\Routing\Router" public="false">
       <tag name="monolog.logger" channel="router"/>
       <tag name="container.service_subscriber" id="routing.loader"/>
-      <argument type="service" id=".service_locator.MAfdX1A.router.default"/>
+      <argument type="service" id=".service_locator.aLnEVbk.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
         <argument key="cache_dir">/home/casey/Documents/quetes/Symfony/blog/var/cache/dev</argument>
@@ -2546,7 +2562,7 @@
       </argument>
       <argument>/home/casey/Documents/quetes/Symfony/blog/var/cache/dev/serialization.php</argument>
     </service>
-    <service id="serializer.mapping.cache.symfony" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" public="false">
+    <service id="serializer.mapping.cache.symfony" class="Psr\Cache\CacheItemPoolInterface" public="false">
       <argument>/home/casey/Documents/quetes/Symfony/blog/var/cache/dev/serialization.php</argument>
       <argument type="service" id="cache.serializer"/>
       <factory class="Symfony\Component\Cache\Adapter\PhpArrayAdapter" method="create"/>
@@ -2828,6 +2844,7 @@
     </service>
     <service id="form.type.entity" class="Symfony\Bridge\Doctrine\Form\Type\EntityType">
       <tag name="form.type" alias="entity"/>
+      <tag name="kernel.reset" method="reset"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" public="false" abstract="true"/>
@@ -4474,6 +4491,7 @@
     <service id="doctrine.fixtures_load_command" class="Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand">
       <tag name="console.command" command="doctrine:fixtures:load"/>
       <argument type="service" id="doctrine.fixtures.loader"/>
+      <argument type="service" id="doctrine"/>
       <call method="setName">
         <argument>doctrine:fixtures:load</argument>
       </call>
@@ -4541,6 +4559,7 @@
       <argument>/home/casey/Documents/quetes/Symfony/blog/public/build/entrypoints.json</argument>
       <argument>null</argument>
       <argument>_default</argument>
+      <argument>true</argument>
     </service>
     <service id=".service_locator._faFGeI" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5142,17 +5161,17 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator._pu.0Tb" method="withContext"/>
     </service>
-    <service id=".service_locator.MAfdX1A" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.aLnEVbk" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="routing.loader" type="service" id="routing.loader"/>
       </argument>
     </service>
-    <service id=".service_locator.MAfdX1A.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.aLnEVbk.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="router.default"/>
       <argument>router.default</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.MAfdX1A" method="withContext"/>
+      <factory service=".service_locator.aLnEVbk" method="withContext"/>
     </service>
     <service id=".service_locator.m8PwGkX" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>

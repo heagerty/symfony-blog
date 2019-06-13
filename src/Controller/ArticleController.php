@@ -26,6 +26,7 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAllWithCategoriesAndTags(),
+
         ]);
     }
 
@@ -88,9 +89,6 @@ class ArticleController extends AbstractController
     {
 
 
-
-
-
         $slug = $slugify->generate($article->getTitle());
         $article->setSlug($slug);
 
@@ -98,7 +96,8 @@ class ArticleController extends AbstractController
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'slug' => $slug,
-            'author' => $article->getAuthor()
+            'author' => $article->getAuthor(),
+            'tags' => $article->getTags()
         ]);
     }
 

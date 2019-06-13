@@ -23,8 +23,10 @@
                 <td>{{ article.content }}</td>
                 <td>
                     {% for tag in article.tags %}
-                    {{ tag }}
-                {% endfor %} </td>
+                        {{ tag.name }}
+                    {% else %}
+                        no tag
+                    {% endfor %} </td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>

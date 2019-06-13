@@ -56,6 +56,8 @@ class ArticleController extends AbstractController
 
             $id = $article->getId();
 
+            $this->addFlash('success', 'The new article has been created'); //Flash message
+
             $message = (new \Swift_Message('Un nouvel article vient d\'être publié !'))
                 ->setFrom('cheagerty@gmail.com')
                 //->setTo('cheagerty@gmail.com')   -- swiftmailer.yaml
@@ -154,6 +156,8 @@ class ArticleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'The article has been deleted');
         }
 
         return $this->redirectToRoute('article_index');

@@ -17,7 +17,6 @@ use App\Form\ArticleSearchType;
 use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-
 use App\Repository\CategoryRepository;
 
 
@@ -115,6 +114,8 @@ class CategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
+            $this->addFlash('success', 'The new category has been created');
+
             return $this->redirectToRoute('category_index');
         }
 
@@ -122,5 +123,22 @@ class CategoryController extends AbstractController
             'category' => $category,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/category/delete/{id}", name="category_delete", methods={"GET", "DELETE"})
+     *
+     */
+    public function delete(Request $request, Category $category): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($category);
+            $entityManager->flush();
+
+            $this->addFlash('danger', 'The category has been deleted');
+        }
+
+        return $this->redirectToRoute('category_index');
     }
 }

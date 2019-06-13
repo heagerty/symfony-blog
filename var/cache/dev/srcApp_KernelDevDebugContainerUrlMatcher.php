@@ -60,10 +60,11 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                         .'|(?:/([a-z0-9-]+))?(*:269)'
                         .'|/category/([^/]++)(*:295)'
                     .')'
+                    .'|/category/delete/([^/]++)(*:329)'
                     .'|/tag/([^/]++)(?'
-                        .'|(*:320)'
-                        .'|/edit(*:333)'
-                        .'|(*:341)'
+                        .'|(*:353)'
+                        .'|/edit(*:366)'
+                        .'|(*:374)'
                     .')'
                 .')/?$}sDu',
         ];
@@ -81,9 +82,10 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             243 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
             269 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
             295 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
-            320 => [[['_route' => 'tag_show', '_controller' => 'App\\Controller\\TagController::show'], ['name'], ['GET' => 0], null, false, true, null]],
-            333 => [[['_route' => 'tag_edit', '_controller' => 'App\\Controller\\TagController::edit'], ['name'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-            341 => [[['_route' => 'tag_delete', '_controller' => 'App\\Controller\\TagController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            329 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['GET' => 0, 'DELETE' => 1], null, false, true, null]],
+            353 => [[['_route' => 'tag_show', '_controller' => 'App\\Controller\\TagController::show'], ['name'], ['GET' => 0], null, false, true, null]],
+            366 => [[['_route' => 'tag_edit', '_controller' => 'App\\Controller\\TagController::edit'], ['name'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+            374 => [[['_route' => 'tag_delete', '_controller' => 'App\\Controller\\TagController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
         ];
     }
 }

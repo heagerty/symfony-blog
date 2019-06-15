@@ -3,7 +3,9 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <h1>{{ article.title }}  <a onclick="addToFavorite()"> {{ isFavorite ?
+            '<i id="favorite" class="fas fa-heart"></i>' : '<i id="favorite" class="far fa-heart"></i>' }}
+        </a></h1>
 
     {% if isNotAuthor is defined and isNotAuthor == true %}
         <p class="error">You are not the author of the article...</p>
@@ -51,4 +53,23 @@
     </ul>
 
     {{ include('article/_delete_form.html.twig') }}
+
+    <script>
+        function addToFavorite() {
+            fetch('{{ path('article_favorite', {'id': article.id}) }}')
+                .then(response => response.json())
+                .then(json => {
+                    let favoriteElt = document.getElementById('favorite');
+                    if (json.isFavorite) {
+                        favoriteElt.classList.remove('far');
+                        favoriteElt.classList.add('fas');
+                    }
+                    else {
+                        favoriteElt.classList.remove('fas');
+                        favoriteElt.classList.add('far');
+                    }
+                });
+        }
+    </script>
 {% endblock %}
+

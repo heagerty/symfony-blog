@@ -52,19 +52,22 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                     .')'
                     .'|/article/([^/]++)(?'
                         .'|(*:189)'
-                        .'|/edit(*:202)'
-                        .'|(*:210)'
+                        .'|/(?'
+                            .'|edit(*:205)'
+                            .'|favorite(*:221)'
+                        .')'
+                        .'|(*:230)'
                     .')'
                     .'|/blog(?'
-                        .'|/list(?:/(\\d+))?(*:243)'
-                        .'|(?:/([a-z0-9-]+))?(*:269)'
-                        .'|/category/([^/]++)(*:295)'
+                        .'|/list(?:/(\\d+))?(*:263)'
+                        .'|(?:/([a-z0-9-]+))?(*:289)'
+                        .'|/category/([^/]++)(*:315)'
                     .')'
-                    .'|/category/delete/([^/]++)(*:329)'
+                    .'|/category/delete/([^/]++)(*:349)'
                     .'|/tag/([^/]++)(?'
-                        .'|(*:353)'
-                        .'|/edit(*:366)'
-                        .'|(*:374)'
+                        .'|(*:373)'
+                        .'|/edit(*:386)'
+                        .'|(*:394)'
                     .')'
                 .')/?$}sDu',
         ];
@@ -77,15 +80,16 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
             189 => [[['_route' => 'article_show', '_controller' => 'App\\Controller\\ArticleController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-            202 => [[['_route' => 'article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-            210 => [[['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
-            243 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
-            269 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
-            295 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
-            329 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['GET' => 0, 'DELETE' => 1], null, false, true, null]],
-            353 => [[['_route' => 'tag_show', '_controller' => 'App\\Controller\\TagController::show'], ['name'], ['GET' => 0], null, false, true, null]],
-            366 => [[['_route' => 'tag_edit', '_controller' => 'App\\Controller\\TagController::edit'], ['name'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-            374 => [[['_route' => 'tag_delete', '_controller' => 'App\\Controller\\TagController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            205 => [[['_route' => 'article_edit', '_controller' => 'App\\Controller\\ArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+            221 => [[['_route' => 'article_favorite', '_controller' => 'App\\Controller\\ArticleController::favorite'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+            230 => [[['_route' => 'article_delete', '_controller' => 'App\\Controller\\ArticleController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
+            263 => [[['_route' => 'blog_list', 'page' => 1, '_controller' => 'App\\Controller\\BlogController::list'], ['page'], null, null, false, true, null]],
+            289 => [[['_route' => 'blog_show', 'slug' => null, '_controller' => 'App\\Controller\\BlogController::show'], ['slug'], null, null, false, true, null]],
+            315 => [[['_route' => 'show_category', '_controller' => 'App\\Controller\\BlogController::showByCategory'], ['name'], null, null, false, true, null]],
+            349 => [[['_route' => 'category_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['GET' => 0, 'DELETE' => 1], null, false, true, null]],
+            373 => [[['_route' => 'tag_show', '_controller' => 'App\\Controller\\TagController::show'], ['name'], ['GET' => 0], null, false, true, null]],
+            386 => [[['_route' => 'tag_edit', '_controller' => 'App\\Controller\\TagController::edit'], ['name'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+            394 => [[['_route' => 'tag_delete', '_controller' => 'App\\Controller\\TagController::delete'], ['id'], ['DELETE' => 0], null, false, true, null]],
         ];
     }
 }

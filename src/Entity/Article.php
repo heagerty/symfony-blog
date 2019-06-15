@@ -64,9 +64,11 @@ class Article
 
 
 
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
